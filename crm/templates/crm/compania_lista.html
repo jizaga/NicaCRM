@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="d-flex justify-content-between mb-4">
+  <div>
+    <h1 class="h3">Compañías</h1>
+    <p class="text-muted mb-0">Cuentas corporativas</p>
+  </div>
+  <a class="btn btn-primary h-25" href="{% url 'compania_nueva' %}">+ Compañía</a>
+</div>
+<div class="card shadow-sm">
+  <div class="table-responsive">
+    <table class="table table-hover mb-0">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Email</th>
+          <th>Teléfono</th>
+          <th>Clientes</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for c in companias %}
+        <tr>
+          <td>{{ c.nombre }}</td>
+          <td>{{ c.email|default:'—' }}</td>
+          <td>{{ c.telefono|default:'—' }}</td>
+          <td>{{ c.total_clientes }}</td>
+          <td><a class="btn btn-sm btn-light" href="{% url 'compania_editar' c.id %}">Editar</a></td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="5" class="p-4 text-muted">No hay compañías.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

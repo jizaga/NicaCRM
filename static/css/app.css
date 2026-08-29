@@ -1,0 +1,35 @@
+body {
+  background: #f5f7fb;
+}
+
+.nav-pills .nav-link {
+  color: #dce6ff;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .nav-link:hover {
+  background: #2d5aa3;
+}
+
+.sidebar {
+  min-height: 100vh;
+  background: #15233b;
+}
+
+.metric {
+  border: 0;
+  border-radius: 14px;
+}
+
+.table td,
+.table th {
+  vertical-align: middle;
+}
+
+.badge {
+  font-weight: 500;
+}
+
+.w-240 {
+  width: 240px !important;
+}

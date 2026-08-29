@@ -1,0 +1,96 @@
+{% extends 'base.html' %} {% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <div>
+    <h1 class="h3 mb-1">Panel de soporte</h1>
+    <p class="text-muted mb-0">Resumen operativo del CRM</p>
+  </div>
+  <a href="{% url 'caso_nuevo' %}" class="btn btn-primary">+ Nuevo caso</a>
+</div>
+<div class="row g-3 mb-4">
+  <div class="col-md-3">
+    <div class="card metric shadow-sm">
+      <div class="card-body">
+        <small class="text-muted">Clientes</small>
+        <div class="display-6">{{ clientes }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card metric shadow-sm">
+      <div class="card-body">
+        <small class="text-muted">Compañías</small>
+        <div class="display-6">{{ companias }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card metric shadow-sm">
+      <div class="card-body">
+        <small class="text-muted">Casos abiertos</small>
+        <div class="display-6 text-danger">{{ casos_abiertos }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card metric shadow-sm">
+      <div class="card-body">
+        <small class="text-muted">Interacciones (30 días)</small>
+        <div class="display-6 text-primary">{{ interacciones_mes }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row g-4">
+  <div class="col-lg-7">
+    <div class="card shadow-sm">
+      <div class="card-header bg-white">
+        <b>Casos recientes</b>
+      </div>
+      <div class="table-responsive">
+        <table class="table mb-0">
+          <thead>
+            <tr>
+              <th>Número</th>
+              <th>Asunto</th>
+              <th>Cliente</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for c in casos_recientes %}
+            <tr>
+              <td>{{ c.numero }}</td>
+              <td>{{ c.asunto }}</td>
+              <td>{{ c.cliente }}</td>
+              <td>
+                <span class="badge text-bg-light"
+                  >{{ c.get_estado_display }}</span
+                >
+              </td>
+            </tr>
+            {% empty %}
+            <tr>
+              <td colspan="4" class="text-muted">No hay casos aún.</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-5">
+    <div class="card shadow-sm">
+      <div class="card-header bg-white">
+        <b>Casos por estado</b>
+      </div>
+      <ul class="list-group list-group-flush">
+        {% for e in por_estado %}
+        <li class="list-group-item d-flex justify-content-between">{{ e.estado }}<b>{{ e.total }}</b></li>
+        {% empty %}
+        <li class="list-group-item text-muted">Sin datos.</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}

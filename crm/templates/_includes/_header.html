@@ -1,0 +1,24 @@
+<header>
+  <div class="container">
+    <h1>NicaCRM</h1>
+    <aside class="sidebar p-3 text-white w-240">
+        <h4 class="mb-4">CRM de Soporte Técnico</h4>
+        <div class="small text-white-50 mb-3">
+          {{ user.nombre_completo }} · {{ user.get_rol_display }}
+        </div>
+        <nav class="nav nav-pills flex-column gap-1">
+          <a class="nav-link" href="{% url 'dashboard' %}">Panel</a>
+          <a class="nav-link" href="{% url 'cliente_lista' %}">Clientes</a>
+          <a class="nav-link" href="{% url 'compania_lista' %}">Compañías</a>
+          <a class="nav-link" href="{% url 'caso_lista' %}">Casos</a>
+          <a class="nav-link" href="{% url 'interaccion_lista' %}">Interacciones</a>
+          <a class="nav-link" href="{% url 'usuario_nuevo' %}">Usuarios</a>
+          <a class="nav-link" href="/admin/">Administración</a>
+          <form method="post" action="{% url 'logout' %}" class="mt-4">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-light btn-sm w-100">Salir</button>
+          </form>
+        </nav>
+      </aside>
+  </div>
+</header>

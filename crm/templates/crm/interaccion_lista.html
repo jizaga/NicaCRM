@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="d-flex justify-content-between mb-4">
+  <div>
+    <h1 class="h3">Interacciones</h1>
+    <p class="text-muted mb-0">Historial de llamadas, correos, reuniones y notas</p>
+  </div>
+  <a class="btn btn-primary h-25" href="{% url 'interaccion_nueva' %}">+ Interacción</a>
+</div>
+<div class="card shadow-sm">
+  <div class="table-responsive">
+    <table class="table table-hover mb-0">
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Tipo</th>
+          <th>Asunto</th>
+          <th>Cliente</th>
+          <th>Caso</th>
+          <th>Registrado por</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in interacciones %}
+        <tr>
+          <td>{{ i.fecha|date:'d/m/Y H:i' }}</td>
+          <td>{{ i.get_tipo_display }}</td>
+          <td>{{ i.asunto }}</td>
+          <td>
+            <a href="{{ i.cliente.get_absolute_url }}">{{ i.cliente }}</a>
+          </td>
+          <td>{{ i.caso.numero|default:'—' }}</td>
+          <td>{{ i.usuario.nombre_completo }}</td>
+          <td><a class="btn btn-sm btn-light" href="{% url 'interaccion_editar' i.id %}">Editar</a></td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="7" class="p-4 text-muted">No hay interacciones.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
