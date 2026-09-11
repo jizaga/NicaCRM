@@ -5,16 +5,16 @@
   <div class="col-md-5">
     <div class="card shadow-sm">
       <div class="card-body p-4">
-        <h2>SupportCRM</h2>
+        <h2>NicaCRM</h2>
         <p class="text-muted">Acceso al CRM de soporte técnico</p>
         <form method="post">
           {% csrf_token %}
           <div class="mb-3">
-            <label>Usuario</label>
+            <label>Usuario (admin)</label>
             <input title="username" class="form-control" name="username" autofocus required>
           </div>
           <div class="mb-3">
-            <label>Contraseña</label>
+            <label>Contraseña (amidn)</label>
             <input title="password" class="form-control" type="password" name="password" required>
           </div>
           <button type="submit" class="btn btn-primary w-100">Ingresar</button>
